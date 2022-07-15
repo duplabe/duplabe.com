@@ -1,0 +1,1 @@
+<span class="text-nowrap"><a href="{{ .Destination | safeURL }}" {{ with .Title}} title="{{ . }}" {{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank"{{ end }}>{{ .Text }}</a>{{ if strings.HasPrefix .Destination "http" }} <i title="external link" class="fas fa-external-link-alt"></i>{{ end }}</span>
