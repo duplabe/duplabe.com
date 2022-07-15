@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    {{ if .Page.Title }}
+    <title>{{ .Page.Title }}</title>
+    <meta name="description" content="{{ .Page.Title }}">
+    {{ else }}
+    <title>{{ .Site.Title }}</title>
+    <meta name="description" content="{{ .Site.Title }}">
+    {{ end }}
+
+    {{ $style := resources.Get "css/bootstrap.min.css" | fingerprint }}
+    <link href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" rel="stylesheet">
+
+    {{ $style := resources.Get "css/fontawesome-free/css/all.min.css" | fingerprint }}
+    <link href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" rel="stylesheet">
+    {{ $style := resources.Get "css/fontawesome-free/webfonts/fa-solid-900.ttf" }}
+    {{ $style.Publish }}
+    {{ $style := resources.Get "css/fontawesome-free/webfonts/fa-solid-900.woff2" }}
+    {{ $style.Publish }}
+
+    {{ $style := resources.Get "css/style.sass" | toCSS | minify | fingerprint }}
+    <link href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png?v=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png?v=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png?v=1">
+    <link rel="manifest" href="/favicon/site.webmanifest?v=1">
+
+    <link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}/posts/index.xml" title="duplabe"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            {{- block "main" . }}{{- end }}
+        </div>
+    </div>
+</div>
+</body>
+</html>

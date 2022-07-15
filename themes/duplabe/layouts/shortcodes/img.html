@@ -1,0 +1,24 @@
+{{ $size := .Get "size" }}
+{{ $image := resources.Get (.Get "src")}}
+{{ $image = $image.Fit $size }}
+
+{{ with $image }}
+    <div class="text-md-start text-center">
+        <figure class="figure float-md-end ms-lg-2">
+            {{ $alt := $.Get "alt" }}
+            <img
+                    class="rounded"
+                    src="{{ .RelPermalink }}"
+                    width="{{ .Width }}"
+                    height="{{ .Height }}"
+                    {{ if $alt}}
+                        alt="{{ $alt }}"
+                        title="{{ $alt }}"
+                    {{ end }}
+            />
+            {{ if $alt}}
+                <figcaption class="figure-caption text-end">{{ $.Get "alt" }}</figcaption>
+            {{ end }}
+        </figure>
+    </div>
+{{ end }}
