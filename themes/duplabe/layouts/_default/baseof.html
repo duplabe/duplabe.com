@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    {{ if .Page.Title }}
+        <title>{{ .Page.Title }} - {{ .Site.Title }}</title>
+        <meta name="description" content="{{ .Page.Title }} - {{ .Site.Title }}">
+    {{ else }}
+        <title>{{ .Site.Title }}</title>
+        <meta name="description" content="{{ .Site.Title }}">
+    {{ end }}
+
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" referrerpolicy="no-referrer" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" referrerpolicy="no-referrer" rel="stylesheet">
+
+    {{ $style := resources.Get "css/style.sass" | toCSS | minify | fingerprint }}
+    <link href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png?v=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png?v=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png?v=1">
+    <link rel="manifest" href="/favicon/site.webmanifest?v=1">
+</head>
+<body>
+<div class="container">
+
+    <div class="row">
+        <div class="col-12">
+            <nav class="navbar navbar-expand">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about/">about</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{- block "main" . }}{{- end }}
+        </div>
+    </div>
+</div>
+</body>
+</html>

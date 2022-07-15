@@ -1,0 +1,15 @@
+baseURL: 'https://duplabe.com'
+languageCode: 'en-us'
+title: 'duplabe'
+theme: 'duplabe'
+enableEmoji: true
+taxonomies: [ ]
+
+params:
+  dateFormat: "January 2, 2006"
+  showPostSummary: true
+  mainSections: [ 'posts' ]
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
