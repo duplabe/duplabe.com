@@ -22,6 +22,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png?v=1">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png?v=1">
     <link rel="manifest" href="/favicon/site.webmanifest?v=1">
+
+    <link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}/posts/index.xml" title="duplabe" />
 </head>
 <body>
 <div class="container">
@@ -35,6 +37,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about/">about</a>
+                    </li>
+                    <li class="nav-item ms-auto">
+                        <a class="nav-link" href="/posts/index.xml"><i class="fa-solid fa-rss"></i></a>
                     </li>
                 </ul>
             </nav>
