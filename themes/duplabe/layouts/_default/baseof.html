@@ -12,8 +12,15 @@
         <meta name="description" content="{{ .Site.Title }}">
     {{ end }}
 
-    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" referrerpolicy="no-referrer" rel="stylesheet">
-    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" referrerpolicy="no-referrer" rel="stylesheet">
+    {{ $style := resources.Get "css/bootstrap.min.css" | fingerprint }}
+    <link href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" rel="stylesheet">
+
+    {{ $style := resources.Get "css/fontawesome-free/css/all.min.css" | fingerprint }}
+    <link href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" rel="stylesheet">
+    {{ $style := resources.Get "css/fontawesome-free/webfonts/fa-solid-900.ttf" }}
+    {{ $style.Publish }}
+    {{ $style := resources.Get "css/fontawesome-free/webfonts/fa-solid-900.woff2" }}
+    {{ $style.Publish }}
 
     {{ $style := resources.Get "css/style.sass" | toCSS | minify | fingerprint }}
     <link href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" rel="stylesheet">
