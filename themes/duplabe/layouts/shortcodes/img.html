@@ -11,13 +11,12 @@
                     src="{{ .RelPermalink }}"
                     width="{{ .Width }}"
                     height="{{ .Height }}"
-                    {{ if $alt}}
-                        alt="{{ $alt }}"
-                        title="{{ $alt }}"
-                    {{ end }}
+                    loading="lazy"
+                    decoding="async"
+                    {{ with $alt }}alt="{{ . }}"{{ end }}
             />
-            {{ if $alt}}
-                <figcaption class="figure-caption text-end">{{ $.Get "alt" }}</figcaption>
+            {{ with $alt }}
+                <figcaption class="figure-caption text-end">{{ . }}</figcaption>
             {{ end }}
         </figure>
     </div>

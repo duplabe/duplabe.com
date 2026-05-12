@@ -1,14 +1,12 @@
 baseURL: 'https://duplabe.com'
-languageCode: 'en-us'
+languageCode: 'en'
 title: 'Balázs Benyó'
 theme: 'duplabe'
 enableEmoji: true
 taxonomies: [ ]
 
 params:
-  dateFormat: "January 2, 2006"
-  showPostSummary: true
-  mainSections: [ 'about' ]
+  description: 'Personal site of Balázs Benyó — software engineer focused on cloud native computing, platform engineering, and Go.'
 markup:
   goldmark:
     renderer:

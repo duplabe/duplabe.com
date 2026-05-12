@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.LanguageCode }}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{ if .Page.Title }}
-    <title>{{ .Page.Title }}</title>
-    <meta name="description" content="{{ .Page.Title }}">
-    {{ else }}
-    <title>{{ .Site.Title }}</title>
-    <meta name="description" content="{{ .Site.Title }}">
-    {{ end }}
+    {{- $isHome := .IsHome }}
+    {{- $title := cond $isHome site.Title (printf "%s · %s" .Page.Title site.Title) }}
+    {{- $description := or .Params.description site.Params.description site.Title }}
+    <title>{{ $title }}</title>
+    <meta name="description" content="{{ $description }}">
+    <link rel="canonical" href="{{ .Permalink }}">
+
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $description }}">
+    <meta property="og:type" content="{{ cond $isHome "website" "article" }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:site_name" content="{{ site.Title }}">
+    <meta name="twitter:card" content="summary">
 
     {{ $style := resources.Get "css/bootstrap.min.css" | fingerprint }}
     <link href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" rel="stylesheet">
-
-    {{ $style := resources.Get "css/fontawesome-free/css/all.min.css" | fingerprint }}
-    <link href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" rel="stylesheet">
-    {{ $style := resources.Get "css/fontawesome-free/webfonts/fa-solid-900.ttf" }}
-    {{ $style.Publish }}
-    {{ $style := resources.Get "css/fontawesome-free/webfonts/fa-solid-900.woff2" }}
-    {{ $style.Publish }}
 
     {{ $style := resources.Get "css/style.sass" | toCSS | minify | fingerprint }}
     <link href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" rel="stylesheet">
@@ -29,8 +28,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png?v=1">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png?v=1">
     <link rel="manifest" href="/favicon/site.webmanifest?v=1">
-
-    <link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}/posts/index.xml" title="duplabe"/>
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body>
 <div class="container">
