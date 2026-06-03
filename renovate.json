@@ -2,14 +2,5 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "local>duplabe/renovate-config"
-  ],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "fileMatch": ["^vendors\\.sh$"],
-      "matchStrings": ["bootstrap@(?<currentValue>[\\d.]+)/"],
-      "depNameTemplate": "bootstrap",
-      "datasourceTemplate": "npm"
-    }
   ]
 }
